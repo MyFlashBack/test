@@ -1,0 +1,35 @@
+<?php
+// первое задание
+$a="text text text text text text text text text text text text text text text text text text text text 
+text text text text text text text text text text text text text text text text text text text text 
+text text text text text text text text text text text text text text text text text text text text text text 
+text text text text text text text text text text text text text text text text text text text text text";
+$c=mb_strimwidth($a, 0, 180);
+$ar=str_word_count($c,1);
+$ar2=implode(' ',array_splice($ar,-2));
+$d='<a href=ссылка на полный текст $a> '. $ar2 . '...</a>';
+$b=$c.$d;
+echo $b;
+
+// второе задание
+// ещё с этим не сталкивался
+
+// третье задание
+// возможно второй вариант быстрее выполнит операцию, так как будет искать сразу объединенную таблицу. 
+// я мало работал с MySQL в основном создание записей+изменения, и поиском без объедененных таблиц
+
+// четвертое задание
+function search($q, $quantity)
+{
+    $couple=0;
+    for ($i=0; $i<$quantity-1; $i++)
+    {
+        if ($q[$i]==$q[$i+1])
+            $couple++;
+    }
+    return $couple;
+}  
+$array=array(1, 1, 2, 3, 4, -51, 12, 12, 12, -51);
+$quantity=sizeof($array);
+search($array, $quantity); // ответ 3
+?>
