@@ -1,0 +1,26 @@
+<?php
+    $host = 'localhost';
+    $database = 'xxxxxxxxx';
+    $user = 'xxxxxxxxx';
+    $password = 'xxxxxxxxx';
+    $ups = mysqli_connect($host, $user, $password, $database);
+    if (mysqli_connect_errno()) {
+        echo 'Ошибка подключения';
+        exit;
+    }
+    $obnova = time();
+    $query = "SELECT * FROM `clan` where `obnova`<'$obnova' LIMIT 1";
+    $res = mysqli_query($ups, $query);
+    while ($row = mysqli_fetch_array($res)) {
+        if ($row['obnova'] < $obnova) {
+            $acc = $row['idclan'];
+            require_once "obnovaClan.php";
+            if ($acc == 0) {
+                exit;
+            }
+        } else {
+            exit;
+        }
+    }
+    mysqli_close($ups);
+?>
